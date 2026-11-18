@@ -5,7 +5,7 @@ Eksamensprojekt på 1. semester af Datamatikeruddannelsen på EK.
 | Fornavn | GitHub |
 | --- | --- |
 | Anne | Anne-YP |
- | Ida | idabloust|
+ | Ida | idabloust |
 
 ### Github Projects ToDo
 - Opret hver user story som et Issue. Skriv acceptkriterierne og opgave-tjeklisten i kortets beskrivelse. 
