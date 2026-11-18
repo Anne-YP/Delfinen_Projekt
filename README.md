@@ -2,9 +2,10 @@
 Eksamensprojekt på 1. semester af Datamatikeruddannelsen på EK.
 
 ## Creators
-| Fornavn | GitHub |
-| --- | --- |
-| Anne | Anne-YP |
+| Fornavn | GitHub      |
+|--------|-------------|
+| Anne   | Anne-YP     |
+| Nikita | NikitaM2527 |
 
 ### Github Projects ToDo
 - Opret hver user story som et Issue. Skriv acceptkriterierne og opgave-tjeklisten i kortets beskrivelse. 
