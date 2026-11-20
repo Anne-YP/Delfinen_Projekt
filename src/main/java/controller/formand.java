@@ -1,4 +1,4 @@
-package domain_model;
+package controller;
 
 public class formand {
 }
