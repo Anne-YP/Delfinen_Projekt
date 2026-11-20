@@ -1,4 +1,4 @@
 package domain_model;
 
-public class Medlem {
+public enum AgeGroup {
 }

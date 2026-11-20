@@ -1,15 +1,15 @@
 package userinterface;
 
-import controller.Controller;
+import controller.ChairmanController;
 
 import java.util.Scanner;
 
 public class Userinterface {
 
-   private Controller controller;
+   private ChairmanController controller;
    private Scanner scanner;
 
-   public Userinterface(Controller controller) {
+   public Userinterface(ChairmanController controller) {
        this.scanner = new Scanner(System.in);
        this.controller = controller;
    }
