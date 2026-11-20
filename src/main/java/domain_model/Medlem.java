@@ -1,4 +1,4 @@
 package domain_model;
 
-public class medlem {
+public class Medlem {
 }
