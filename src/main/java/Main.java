@@ -1,11 +1,11 @@
-import userinterface.Userinterface;
+import controller.MenuController;
+import java.util.logging.FileHandler;
 
 public class Main {
     public static void main(String[] args) {
-        // 3 x FileHandler
-        // 3 x Controller
+        FileHandler fileHandler = new FileHandler("data.csv");
+        MenuController controller = new MenuController(fileHandler);
 
-        Userinterface ui = new Userinterface();
-
+        MenuController.start();
     }
 }
