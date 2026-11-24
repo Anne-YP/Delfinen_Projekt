@@ -1,7 +1,7 @@
 package domain_model;
 
 public enum UserRole {
-    FORMAND,
-    KASSERER,
-    TRÆNER
+    CHAIRMAN, // FORMAND
+    TREASURER, // KASSERER
+    COACH // TRÆNER
 }
