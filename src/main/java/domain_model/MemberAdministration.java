@@ -1,6 +1,33 @@
 package domain_model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class MemberAdministration {
+    private ArrayList<Member> members;
+    private int nextMemberId;
+
+    //US3: Tilddel medlemsnummer automatisk
+    public MemberAdministration() {
+        members = new ArrayList<>();
+        nextMemberId = 1000;
+    }
+
+    public void addMember(String name, LocalDate dateOfBirth, boolean isActive, boolean isCompetitive) {
+        Member member = new Member(name, dateOfBirth, nextMemberId, isActive, isCompetitive);
+        members.add(member);
+        nextMemberId++;
+    }
+
+    /* Ved ikke om vi også skal bruge den her:
+    public void addMember(Member member) {
+    members.add(member);
+    }
+     */
+
+    public ArrayList<Member> getMembers() {
+        return members;
+    }
 }
 
 /* METODER:

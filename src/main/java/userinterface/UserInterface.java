@@ -4,6 +4,9 @@ import controller.Controller;
 import domain_model.UserRole;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -91,5 +94,81 @@ public class UserInterface {
         System.out.println("3. Registrér stævneresultat"); // med stævnets navn, dato, disciplin, placering og tid
         System.out.println("4. Se resultater for en bestemt konkurrencesvømmer"); // bedste træningstid i hver disciplin og alle stævneresultater
         System.out.println("5. Se top 5 for disciplin og hold"); // herunder discipliner og junior samt senior
+    }
+
+
+    // TODO US1: createmember()
+    private void createMember() {
+        String name = "";
+        while (name.isEmpty()) {
+            System.out.println("Indtast navn: ");
+            name = scanner.nextLine();
+
+            if (name.isEmpty()) {
+                System.out.println("Navn må ikke stå tomt. Indtast navn: ");
+            }
+            // EXCEPTION MED TAL
+        }
+
+        LocalDate dateOfBirth = null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        while (dateOfBirth == null) {
+            System.out.println("Indtast fødselsdato. (dd-mm-yyyy): ");
+            String input = scanner.nextLine();
+            try {
+                dateOfBirth = LocalDate.parse(input, formatter);
+                if (dateOfBirth.isAfter(LocalDate.now())) {
+                    System.out.println("Fødselsdatoen kan ikke ligge i fremtiden.");
+                    dateOfBirth = null;
+                }
+            }
+            catch (DateTimeParseException e) {
+                System.out.println("Ugyldigt datoformat. Brug formatet dd-mm-yyyy.");
+            }
+        }
+
+        boolean isActive = false;
+        boolean validActiveInput = false;
+        while (!validActiveInput) {
+            System.out.println("Er medlemmet aktivt? (ja/nej): ");
+            String activeInput = scanner.nextLine().trim();
+            if (activeInput.equalsIgnoreCase("ja") || activeInput.equalsIgnoreCase("j")) {
+                isActive = true;
+                validActiveInput = true;
+            }
+            else if (activeInput.equalsIgnoreCase("nej") || activeInput.equalsIgnoreCase("n")) {
+                validActiveInput = true;
+            }
+            else {
+                System.out.println("Ugyldigt svar. Skriv ja/j eller nej/n");
+            }
+        }
+
+        boolean isCompetitive = false;
+        boolean validCompetitiveInput = false;
+        while (!validCompetitiveInput) {
+            System.out.println("Er medlemmet konkurrencesvømmer? (ja/nej): ");
+            String competitiveInput = scanner.nextLine().trim();
+            if (competitiveInput.equalsIgnoreCase("ja") || competitiveInput.equalsIgnoreCase("j")) {
+                isCompetitive = true;
+                validCompetitiveInput = true;
+            }
+            else if (competitiveInput.equalsIgnoreCase("nej") || competitiveInput.equalsIgnoreCase("n")) {
+                isCompetitive = false;
+                validCompetitiveInput = true;
+            }
+            else {
+                System.out.println("Ugyldigt svar. skriv ja/j eller nej/n.");
+            }
+        }
+        try {
+            controller.addMember(name, dateOfBirth, isActive, isCompetitive);
+            System.out.println("Medlemmet er blevet oprettet.");
+            // TODO tilføj medlemsID
+            // System.out.println("Medlemsnummer: ");
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

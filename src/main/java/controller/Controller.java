@@ -1,9 +1,9 @@
 package controller;
 
-import domain_model.MemberAdministration;
-import domain_model.QuotaAdministration;
-import domain_model.TrainingAdministration;
-import domain_model.UserRole;
+import domain_model.*;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 import userinterface.UserInterface;
 
 public class Controller {
@@ -28,5 +28,14 @@ public class Controller {
             default -> throw new IllegalArgumentException("Ugyldigt valg");
         };
 
+    }
+
+    // Add member()
+    public void addMember(String name, LocalDate dateOfBirth, boolean isActive, boolean isCompetitive) {
+        memberAdministration.addMember(name, dateOfBirth, isActive, isCompetitive);
+    }
+
+    public ArrayList<Member> getMembers() {
+        return memberAdministration.getMembers();
     }
 }
