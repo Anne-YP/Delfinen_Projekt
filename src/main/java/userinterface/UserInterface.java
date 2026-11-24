@@ -1,12 +1,14 @@
 package userinterface;
 
 import controller.Controller;
+import domain_model.Member;
 import domain_model.UserRole;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -77,6 +79,17 @@ public class UserInterface {
         System.out.println("2. Rediger medlem");
         System.out.println("3. Slet medlem");
         System.out.println("4. Se medlemsoversigt"); // med navn, alder, junior/senior, aktivitetsform (passiv, motionist eller konkurrence)
+
+        //Skal vi ikke også have en afslut-mulighed?
+        // System.out.println("0. Afslut");
+
+        String chairmanChoice = scanner.nextLine();
+        switch (chairmanChoice) {
+            case "1" -> createMember();
+            case "4" -> showAllMembers();
+          //  case "0" ->
+            default -> System.out.println("Ugyldigt valg.");
+        }
     }
 
     public void treasurerMenu() {
@@ -106,8 +119,9 @@ public class UserInterface {
 
             if (name.isEmpty()) {
                 System.out.println("Navn må ikke stå tomt. Indtast navn: ");
+            } else if (name.matches("\\d+")) {
+                System.out.println("Navn må ikke kun bestå af tal.");
             }
-            // EXCEPTION MED TAL
         }
 
         LocalDate dateOfBirth = null;
@@ -120,6 +134,9 @@ public class UserInterface {
                 if (dateOfBirth.isAfter(LocalDate.now())) {
                     System.out.println("Fødselsdatoen kan ikke ligge i fremtiden.");
                     dateOfBirth = null;
+                }
+                else if (dateOfBirth.isBefore(LocalDate.now().minusYears(100))) {
+                    System.out.println("Ugyldig datoformat. For høj alder.");
                 }
             }
             catch (DateTimeParseException e) {
@@ -164,11 +181,26 @@ public class UserInterface {
         try {
             controller.addMember(name, dateOfBirth, isActive, isCompetitive);
             System.out.println("Medlemmet er blevet oprettet.");
-            // TODO tilføj medlemsID
+            // TODO tilføj visning af medlemsID
             // System.out.println("Medlemsnummer: ");
         }
         catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    //US4 Se medlemsoversigt
+    private void showAllMembers() {
+        System.out.println("=== Medlemsoversigt ===");
+
+        ArrayList<Member> members = controller.getMembers();
+        for (Member m : members) {
+            System.out.println("Navn: " + m.getName() + "\n" + "Fødselsdato: " + m.getDateOfBirth() + "\n"
+                    + "Medlemsnummer: " + m.getMemberId() + "\n" + "Aktivt medlem: " + m.isActive() + "\n"
+                    + "Konkurrencesvømmer: " + m.isCompetitive());
+        }
+            if (members.isEmpty()) {
+                System.out.println("Ingen medlemmer oprettet.");
         }
     }
 }

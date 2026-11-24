@@ -54,9 +54,4 @@ public class Member {
     public void setCompetitive(boolean competitive) {
         isCompetitive = competitive;
     }
-
-    // TODO Inddel i aldersgruppe
-    public void ageGroup() {
-        if (dateOfBirth)
-    }
 }
