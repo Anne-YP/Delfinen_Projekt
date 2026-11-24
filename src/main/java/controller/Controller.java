@@ -4,6 +4,7 @@ import domain_model.MemberAdministration;
 import domain_model.QuotaAdministration;
 import domain_model.TrainingAdministration;
 import domain_model.UserRole;
+import userinterface.UserInterface;
 
 public class Controller {
     private MemberAdministration memberAdministration;
@@ -21,9 +22,9 @@ public class Controller {
 
     public UserRole selectUserRole(int choice) {
         return switch (choice) {
-            case 1 -> UserRole.FORMAND;
-            case 2 -> UserRole.KASSERER;
-            case 3 -> UserRole.TRÆNER;
+            case 1 -> UserRole.CHAIRMAN;
+            case 2 -> UserRole.TREASURER;
+            case 3 -> UserRole.COACH;
             default -> throw new IllegalArgumentException("Ugyldigt valg");
         };
 
