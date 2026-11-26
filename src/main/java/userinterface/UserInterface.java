@@ -116,6 +116,7 @@ public class UserInterface {
             System.out.println("2. Registrér betaling");
             System.out.println("3. Se liste over medlemmer i restance"); // med medlemsnummer, navn og det beløb de skylder
             System.out.println("4. Se forventet samlet kontingentindtægt");
+            System.out.println("0. Afslut");
 
             int treasurerChoice = readInt("\nValg: ");
 
@@ -140,6 +141,7 @@ public class UserInterface {
             System.out.println("3. Registrér stævneresultat"); // med stævnets navn, dato, disciplin, placering og tid
             System.out.println("4. Se resultater for en bestemt konkurrencesvømmer"); // bedste træningstid i hver disciplin og alle stævneresultater
             System.out.println("5. Se top 5 for disciplin og hold"); // herunder discipliner og junior samt senior
+            System.out.println("0. Afslut");
 
             int coachChoice = readInt("\nValg: ");
 
@@ -249,7 +251,6 @@ public class UserInterface {
                 System.out.println("Konkurrencesvømmer: Nej");
             }
             System.out.println("--------------------------");
-            System.out.println("");
         }
         if (members.isEmpty()) {
             System.out.println("Ingen medlemmer oprettet.");
