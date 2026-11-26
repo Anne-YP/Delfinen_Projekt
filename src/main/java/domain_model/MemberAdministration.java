@@ -15,15 +15,7 @@ public class MemberAdministration {
     }
 
     public void addMember(String name, LocalDate dateOfBirth, boolean isActive, boolean isCompetitive) {
-        Period period = Period.between(dateOfBirth, LocalDate.now());
-        int age = period.getYears();
-        AgeGroup ageGroup;
-        if (age < 18) {
-            ageGroup = AgeGroup.JUNIOR;
-        } else {
-            ageGroup = AgeGroup.SENIOR;
-        }
-        Member member = new Member(name, dateOfBirth, nextMemberId, isActive, isCompetitive, ageGroup);
+        Member member = new Member(name, dateOfBirth, nextMemberId, isActive, isCompetitive);
         members.add(member);
         nextMemberId++;
     }

@@ -237,6 +237,7 @@ public class UserInterface {
             System.out.println("Navn: " + m.getName());
             System.out.println("Fødselsdato: " + m.getDateOfBirth());
             System.out.println("Medlemsnummer: " + m.getMemberId());
+            System.out.println("Holdtype: " + m.getAgeGroup());
             if (m.isActive()) {
                 System.out.println("Aktiv/Passiv: Aktiv");
             } else {

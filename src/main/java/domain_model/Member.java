@@ -1,6 +1,7 @@
 package domain_model;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Member {
     private String name;
@@ -12,13 +13,13 @@ public class Member {
 
     // AgeGroup - Ved ikke lige hvordan den skal tilkendegives
 
-    public Member (String name, LocalDate dateOfBirth, int memberId, boolean isActive, boolean isCompetitive, AgeGroup ageGroup) {
+    public Member (String name, LocalDate dateOfBirth, int memberId, boolean isActive, boolean isCompetitive) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.memberId = memberId;
         this.isActive = isActive;
         this.isCompetitive = isCompetitive;
-        this.ageGroup = ageGroup;
+        this.ageGroup = calculateAgeGroup(dateOfBirth);
     }
 
     public String getName() {
@@ -58,6 +59,17 @@ public class Member {
 
     public AgeGroup getAgeGroup() {
         return ageGroup;
+    }
+
+    public AgeGroup calculateAgeGroup(LocalDate dateOfBirth) {
+        Period period = Period.between(dateOfBirth, LocalDate.now());
+        int age = period.getYears();
+        AgeGroup ageGroup;
+        if (age < 18) {
+            return AgeGroup.JUNIOR;
+        } else {
+            return AgeGroup.SENIOR;
+        }
     }
 
     @Override
