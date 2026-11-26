@@ -1,7 +1,6 @@
 package domain_model;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Member {
     private String name;
@@ -12,7 +11,7 @@ public class Member {
 
     // AgeGroup - Ved ikke lige hvordan den skal tilkendegives
 
-    public Member (String name, LocalDate dateOfBirth, int memberId, boolean isActive, boolean isCompetitive) {
+    public Member (String name, int dateOfBirth, int memberId, boolean isActive, boolean isCompetitive) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.memberId = memberId;
