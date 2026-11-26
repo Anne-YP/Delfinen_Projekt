@@ -1,6 +1,5 @@
 package datasource;
 
-import domain_model.AgeGroup;
 import domain_model.Member;
 
 import java.io.File;
@@ -142,7 +141,6 @@ public class FileHandler {
             int memberId = Integer.parseInt(fields[2]);
             boolean isActive = Boolean.parseBoolean(fields[3]);
             boolean isCompetitive = Boolean.parseBoolean(fields[4]);
-
 
             return new Member(name, dateOfBirth, memberId, isActive, isCompetitive);
 
