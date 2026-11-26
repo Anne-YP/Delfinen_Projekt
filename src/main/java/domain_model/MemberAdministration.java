@@ -2,6 +2,7 @@ package domain_model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.Period;
 
 public class MemberAdministration {
     private ArrayList<Member> members;
@@ -14,7 +15,15 @@ public class MemberAdministration {
     }
 
     public void addMember(String name, LocalDate dateOfBirth, boolean isActive, boolean isCompetitive) {
-        Member member = new Member(name, dateOfBirth, nextMemberId, isActive, isCompetitive);
+        Period period = Period.between(dateOfBirth, LocalDate.now());
+        int age = period.getYears();
+        AgeGroup ageGroup;
+        if (age < 18) {
+            ageGroup = AgeGroup.JUNIOR;
+        } else {
+            ageGroup = AgeGroup.SENIOR;
+        }
+        Member member = new Member(name, dateOfBirth, nextMemberId, isActive, isCompetitive, ageGroup);
         members.add(member);
         nextMemberId++;
     }
@@ -29,6 +38,7 @@ public class MemberAdministration {
         return members;
     }
 }
+
 
 /* METODER:
 1. Opret medlem (+ tildel medlemsform, hold og evt. disciplin)

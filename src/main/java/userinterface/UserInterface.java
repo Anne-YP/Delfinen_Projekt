@@ -181,23 +181,26 @@ public class UserInterface {
             }
 
             boolean isCompetitive = false;
-            boolean validCompetitiveInput = false;
-            while (!validCompetitiveInput) {
-                System.out.println("Er medlemmet konkurrencesvømmer? (ja/nej): ");
-                String competitiveInput = scanner.nextLine().trim();
-                if (competitiveInput.equalsIgnoreCase("ja") || competitiveInput.equalsIgnoreCase("j")) {
-                    isCompetitive = true;
-                    validCompetitiveInput = true;
-                } else if (competitiveInput.equalsIgnoreCase("nej") || competitiveInput.equalsIgnoreCase("n")) {
-                    isCompetitive = false;
-                    validCompetitiveInput = true;
-                } else {
-                    System.out.println("Ugyldigt svar. skriv ja/j eller nej/n.");
+            if (isActive) {
+                boolean validCompetitiveInput = false;
+                while (!validCompetitiveInput) {
+                    System.out.println("Er medlemmet konkurrencesvømmer? (ja/nej): ");
+                    String competitiveInput = scanner.nextLine().trim();
+                    if (competitiveInput.equalsIgnoreCase("ja") || competitiveInput.equalsIgnoreCase("j")) {
+                        isCompetitive = true;
+                        validCompetitiveInput = true;
+                    } else if (competitiveInput.equalsIgnoreCase("nej") || competitiveInput.equalsIgnoreCase("n")) {
+                        isCompetitive = false;
+                        validCompetitiveInput = true;
+                    } else {
+                        System.out.println("Ugyldigt svar. skriv ja/j eller nej/n.");
+                    }
                 }
             }
             try {
                 controller.addMember(name, dateOfBirth, isActive, isCompetitive);
-                System.out.println("Medlemmet er blevet oprettet.");
+                System.out.println("Medlemmet er blevet oprettet.\n");
+
                 // TODO tilføj visning af medlemsID
                 // System.out.println("Medlemsnummer: ");
             } catch (IllegalArgumentException e) {
@@ -211,9 +214,20 @@ public class UserInterface {
 
             ArrayList<Member> members = controller.getMembers();
             for (Member m : members) {
-                System.out.println("Navn: " + m.getName() + "\n" + "Fødselsdato: " + m.getDateOfBirth() + "\n"
-                        + "Medlemsnummer: " + m.getMemberId() + "\n" + "Aktivt medlem: " + m.isActive() + "\n"
-                        + "Konkurrencesvømmer: " + m.isCompetitive() + "\n");
+                System.out.println("Navn: " + m.getName());
+                System.out.println("Fødselsdato: " + m.getDateOfBirth());
+                System.out.println("Medlemsnummer: " + m.getMemberId());
+                if (m.isActive()) {
+                    System.out.println("Aktiv/Passiv: Aktiv");
+                } else {
+                    System.out.println("Aktiv/Passiv: Passiv");
+                }
+                if (m.isCompetitive()){
+                    System.out.println("Konkurrencesvømmer: Ja");
+                } else {
+                    System.out.println("Konkurrencesvømmer: Nej");
+                }
+                System.out.println("");
             }
             if (members.isEmpty()) {
                 System.out.println("Ingen medlemmer oprettet.");

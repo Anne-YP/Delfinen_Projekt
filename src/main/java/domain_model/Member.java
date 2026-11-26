@@ -8,15 +8,17 @@ public class Member {
     private int memberId;
     private boolean isActive;
     private boolean isCompetitive;
+    private AgeGroup ageGroup;
 
     // AgeGroup - Ved ikke lige hvordan den skal tilkendegives
 
-    public Member (String name, int dateOfBirth, int memberId, boolean isActive, boolean isCompetitive) {
+    public Member (String name, LocalDate dateOfBirth, int memberId, boolean isActive, boolean isCompetitive, AgeGroup ageGroup) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.memberId = memberId;
         this.isActive = isActive;
         this.isCompetitive = isCompetitive;
+        this.ageGroup = ageGroup;
     }
 
     public String getName() {
@@ -52,5 +54,21 @@ public class Member {
     }
     public void setCompetitive(boolean competitive) {
         isCompetitive = competitive;
+    }
+
+    public AgeGroup getAgeGroup() {
+        return ageGroup;
+    }
+
+    @Override
+    public String toString(){
+        String ActiveMemberText =  isActive ? "Aktiv" : "Passiv";
+        String CompetitiveMemberText = isCompetitive ? "Ja" : "Nej";
+        return "Navn: " + name
+                + "\nFødselsdato: " + dateOfBirth
+                + "\nMedlemsnummer: " + memberId
+                + "\nAktiv/Passiv: " + ActiveMemberText
+                + "\nKonkurrencesvømmer: " + CompetitiveMemberText
+                + "Holdtype: " + ageGroup + "\n";
     }
 }

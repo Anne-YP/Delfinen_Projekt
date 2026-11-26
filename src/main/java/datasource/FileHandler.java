@@ -1,11 +1,13 @@
 package datasource;
 
+import domain_model.AgeGroup;
 import domain_model.Member;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -136,10 +138,11 @@ public class FileHandler {
 
         try {
             String name = fields[0];
-            int dateOfBirth = Integer.parseInt(fields[1]);
+            LocalDate dateOfBirth = LocalDate.parse(fields[1]);
             int memberId = Integer.parseInt(fields[2]);
             boolean isActive = Boolean.parseBoolean(fields[3]);
             boolean isCompetitive = Boolean.parseBoolean(fields[4]);
+
 
             return new Member(name, dateOfBirth, memberId, isActive, isCompetitive);
 
