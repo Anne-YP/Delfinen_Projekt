@@ -8,6 +8,10 @@ public class QuotaAdministration {
             return Quota.PASSIVE_MEMBER;
         }
 
+        if (member.getAgeGroup() == AgeGroup.JUNIOR) {
+            return Quota.JUNIOR_MEMBER;
+        }
+
         return 0;
     }
 }
