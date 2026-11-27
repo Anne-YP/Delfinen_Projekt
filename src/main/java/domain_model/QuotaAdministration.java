@@ -12,6 +12,10 @@ public class QuotaAdministration {
             return Quota.JUNIOR_MEMBER;
         }
 
-        return 0;
+        if (member.getAge() > 60) {
+            return Quota.SENIOR_MEMBER * Quota.SENIOR_DISCOUNT_PERCENT / 100;
+        }
+
+        return Quota.SENIOR_MEMBER;
     }
 }
