@@ -81,6 +81,6 @@ public class Member {
                 + "\nMedlemsnummer: " + memberId
                 + "\nAktiv/Passiv: " + ActiveMemberText
                 + "\nKonkurrencesvømmer: " + CompetitiveMemberText
-                + "Holdtype: " + ageGroup + "\n";
+                + "\nHoldtype: " + ageGroup + "\n";
     }
 }

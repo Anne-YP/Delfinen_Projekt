@@ -4,5 +4,15 @@ public enum Discipline {
     BUTTERFLY,
     CRAWL,
     BACKCRAWL,
-    CHEST
+    CHEST;
+
+    @Override
+    public String toString() {
+        return switch (this) {
+            case BUTTERFLY -> "Butterfly";
+            case CRAWL -> "Crawl";
+            case BACKCRAWL -> "Rygcrawl";
+            case CHEST -> "Brystsvømning";
+        };
+    }
 }

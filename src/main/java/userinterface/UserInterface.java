@@ -1,6 +1,7 @@
 package userinterface;
 
 import controller.Controller;
+import domain_model.Discipline;
 import domain_model.Member;
 import domain_model.UserRole;
 
@@ -157,7 +158,6 @@ public class UserInterface {
         }
     }
 
-
     // TODO US1: createmember()
     private void createMember() {
         String name = "";
@@ -205,6 +205,7 @@ public class UserInterface {
             }
         }
 
+        ArrayList<Discipline> disciplines = new ArrayList<>();
         boolean isCompetitive = false;
         if (isActive) {boolean validCompetitiveInput = false;
         while (!validCompetitiveInput) {
@@ -219,10 +220,71 @@ public class UserInterface {
             } else {
                 System.out.println("Ugyldigt svar. skriv ja/j eller nej/n.");}
             }
+
+        if (isCompetitive) {
+            boolean doneSelecting = false;
+            while (!doneSelecting) {
+                System.out.println("Vælg discipline(r):");
+                System.out.println("1. Butterfly\n" +
+                        "2. Crawl\n" +
+                        "3. Rygcrawl\n" +
+                        "4. Brystsvømning\n" +
+                        "0. Færdig med valg\n" +
+                        "9. Fortryd konkurrencesvømmer\n" +
+                        "Valg: ");
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+
+                switch (choice) {
+                    case 1 -> {
+                        if (!disciplines.contains(Discipline.BUTTERFLY)) {
+                            disciplines.add(Discipline.BUTTERFLY);
+                        } else {
+                            System.out.println("Butterfly er allerede valgt.");
+                        }
+                    }
+                    case 2 -> {
+                        if (!disciplines.contains(Discipline.CRAWL)) {
+                            disciplines.add(Discipline.CRAWL);
+                        } else {
+                            System.out.println("Crawl er allerede valgt.");
+                        }
+                    }
+                    case 3 -> {
+                        if (!disciplines.contains(Discipline.BACKCRAWL)) {
+                            disciplines.add(Discipline.BACKCRAWL);
+                        } else {
+                            System.out.println("Rygcrawl er allerede valgt.");
+                        }
+                    }
+                    case 4 -> {
+                        if (!disciplines.contains(Discipline.CHEST)) {
+                        disciplines.add(Discipline.CHEST);
+                    } else {
+                            System.out.println("Brystsvømning er allerede valgt.");
+                        }
+                    }
+                    case 0 -> {
+                        if (disciplines.isEmpty()) {
+                            System.out.println("Du skal vælge mindst én disciplin.");
+                        } else {
+                            doneSelecting = true;
+                        }
+                    }
+                    case 9 -> {
+                        isCompetitive = false;
+                        disciplines.clear();
+                        doneSelecting = true;
+                        System.out.println("Konkurrencesvømmer-valget er annulleret.");
+                    }
+                    default -> System.out.println("Ugyldigt valg.");
+                }
+            }
+        }
         }
         try {
-            controller.addMember(name, dateOfBirth, isActive, isCompetitive);
-            System.out.println("Medlemmet er blevet oprettet.\n");
+            controller.addMember(name, dateOfBirth, isActive, isCompetitive, disciplines);
+            System.out.println("Medlemmet er blevet oprettet.");
             // TODO tilføj visning af medlemsID
             // System.out.println("Medlemsnummer: ");
         } catch (IllegalArgumentException e) {
@@ -236,24 +298,11 @@ public class UserInterface {
 
         ArrayList<Member> members = controller.getMembers();
         for (Member m : members) {
-            System.out.println("Navn: " + m.getName());
-            System.out.println("Fødselsdato: " + m.getDateOfBirth());
-            System.out.println("Medlemsnummer: " + m.getMemberId());
-            System.out.println("Holdtype: " + m.getAgeGroup());
-            if (m.isActive()) {
-                System.out.println("Aktiv/Passiv: Aktiv");
-            } else {
-                System.out.println("Aktiv/Passiv: Passiv");
-            }
-            if (m.isCompetitive()){
-                System.out.println("Konkurrencesvømmer: Ja");
-            } else {
-                System.out.println("Konkurrencesvømmer: Nej");
-            }
-            System.out.println("--------------------------");
+            System.out.println(m);
         }
         if (members.isEmpty()) {
             System.out.println("Ingen medlemmer oprettet.");
         }
+            System.out.println("--------------------------");
+        }
     }
-}

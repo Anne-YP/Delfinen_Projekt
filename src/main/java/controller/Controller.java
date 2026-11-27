@@ -31,8 +31,8 @@ public class Controller {
     }
 
     // Add member()
-    public void addMember(String name, LocalDate dateOfBirth, boolean isActive, boolean isCompetitive) {
-        memberAdministration.addMember(name, dateOfBirth, isActive, isCompetitive);
+    public void addMember(String name, LocalDate dateOfBirth, boolean isActive, boolean isCompetitive, ArrayList<Discipline> disciplines) {
+        memberAdministration.addMember(name, dateOfBirth, isActive, isCompetitive, disciplines);
     }
 
     public ArrayList<Member> getMembers() {

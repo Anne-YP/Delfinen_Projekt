@@ -2,7 +2,6 @@ package domain_model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.time.Period;
 
 public class MemberAdministration {
     private ArrayList<Member> members;
@@ -14,8 +13,15 @@ public class MemberAdministration {
         nextMemberId = 1000;
     }
 
-    public void addMember(String name, LocalDate dateOfBirth, boolean isActive, boolean isCompetitive) {
-        Member member = new Member(name, dateOfBirth, nextMemberId, isActive, isCompetitive);
+    public void addMember(String name, LocalDate dateOfBirth, boolean isActive, boolean isCompetitive, ArrayList<Discipline> disciplines) {
+        Member member;
+        if (isCompetitive) {
+            member = new CompetitiveSwimmer(name, dateOfBirth, nextMemberId, isActive, isCompetitive, disciplines, 0);
+
+        }
+        else {
+            member = new Member(name, dateOfBirth, nextMemberId, isActive, isCompetitive);
+        }
         members.add(member);
         nextMemberId++;
     }
