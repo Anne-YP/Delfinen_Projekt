@@ -61,6 +61,10 @@ public class Member {
         return ageGroup;
     }
 
+    public int getAge() {
+      return Period.between(dateOfBirth, LocalDate.now()).getYears();
+    }
+
     public AgeGroup calculateAgeGroup(LocalDate dateOfBirth) {
         Period period = Period.between(dateOfBirth, LocalDate.now());
         int age = period.getYears();
