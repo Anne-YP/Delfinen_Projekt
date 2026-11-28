@@ -20,7 +20,7 @@ public class FileHandler {
 
     private String fileName;
     private int skippedLineCount;
-    private static final String HEADER = "name;dateOfBirth;memberId;isActive;isCompetitive";
+    private static final String HEADER = "name;dateOfBirth;memberId;isActive;isCompetitive;quotaPaid";
 
 
     // === Constructor (String fileName) ===
@@ -63,8 +63,9 @@ public class FileHandler {
         String memberId = String.valueOf(member.getMemberId());
         String isActive = String.valueOf(member.isActive());
         String isCompetitive = String.valueOf(member.isCompetitive());
+        String quotaPaid = String.valueOf(member.isQuotaPaid());
 
-        return String.join(";", name, dateOfBirth, memberId, isActive, isCompetitive);
+        return String.join(";", name, dateOfBirth, memberId, isActive, isCompetitive, quotaPaid);
     }
 
 
@@ -131,7 +132,7 @@ public class FileHandler {
     static Member parseMember(String line) {
         String[] fields = line.split(";", -1);
 
-        if (fields.length != 5) {
+        if (fields.length != 6) {
             return null;
         }
 
@@ -141,8 +142,9 @@ public class FileHandler {
             int memberId = Integer.parseInt(fields[2]);
             boolean isActive = Boolean.parseBoolean(fields[3]);
             boolean isCompetitive = Boolean.parseBoolean(fields[4]);
+            boolean quotaPaid = Boolean.parseBoolean(fields[5]);
 
-            return new Member(name, dateOfBirth, memberId, isActive, isCompetitive);
+            return new Member(name, dateOfBirth, memberId, isActive, isCompetitive, quotaPaid);
 
         } catch (DateTimeException | IllegalArgumentException e) {
             return null;

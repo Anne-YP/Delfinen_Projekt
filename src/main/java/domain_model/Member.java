@@ -24,6 +24,17 @@ public class Member {
         this.quotaPaid = false;
     }
 
+    public Member (String name, LocalDate dateOfBirth, int memberId, boolean isActive, boolean isCompetitive,
+                   boolean quotaPaid) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.memberId = memberId;
+        this.isActive = isActive;
+        this.isCompetitive = isCompetitive;
+        this.ageGroup = calculateAgeGroup(dateOfBirth);
+        this.quotaPaid = quotaPaid;
+    }
+
     public String getName() {
         return name;
     }
