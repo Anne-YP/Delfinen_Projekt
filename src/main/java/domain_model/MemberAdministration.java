@@ -35,6 +35,26 @@ public class MemberAdministration {
     public ArrayList<Member> getMembers() {
         return members;
     }
+
+    public boolean registerPayment(Member member) {
+        if(member.isQuotaPaid()) {
+            return false;
+        }
+
+        member.setQuotaPaid(true);
+        return true;
+    }
+
+    public Member findMemberById(int memberId) {
+
+        for(Member member : members) {
+            if(member.getMemberId() == memberId) {
+                return member;
+            }
+        }
+
+        return null;
+    }
 }
 
 

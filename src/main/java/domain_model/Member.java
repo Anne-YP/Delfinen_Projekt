@@ -10,6 +10,7 @@ public class Member {
     private boolean isActive;
     private boolean isCompetitive;
     private AgeGroup ageGroup;
+    private boolean quotaPaid;
 
     // AgeGroup - Ved ikke lige hvordan den skal tilkendegives
 
@@ -20,6 +21,18 @@ public class Member {
         this.isActive = isActive;
         this.isCompetitive = isCompetitive;
         this.ageGroup = calculateAgeGroup(dateOfBirth);
+        this.quotaPaid = false;
+    }
+
+    public Member (String name, LocalDate dateOfBirth, int memberId, boolean isActive, boolean isCompetitive,
+                   boolean quotaPaid) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.memberId = memberId;
+        this.isActive = isActive;
+        this.isCompetitive = isCompetitive;
+        this.ageGroup = calculateAgeGroup(dateOfBirth);
+        this.quotaPaid = quotaPaid;
     }
 
     public String getName() {
@@ -55,6 +68,14 @@ public class Member {
     }
     public void setCompetitive(boolean competitive) {
         isCompetitive = competitive;
+    }
+
+    public boolean isQuotaPaid() {
+        return quotaPaid;
+    }
+
+    public void setQuotaPaid(boolean quotaPaid) {
+        this.quotaPaid = quotaPaid;
     }
 
     public AgeGroup getAgeGroup() {
