@@ -38,4 +38,8 @@ public class Controller {
     public ArrayList<Member> getMembers() {
         return memberAdministration.getMembers();
     }
+
+    public int calculateTotalExpectedIncome() {
+        return quotaAdministration.calculateTotalExpectedIncome(memberAdministration.getMembers());
+    }
 }
