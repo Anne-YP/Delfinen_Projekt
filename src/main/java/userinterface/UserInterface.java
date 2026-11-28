@@ -125,7 +125,7 @@ public class UserInterface {
                 // case 1 ->
                 // case 2 ->
                 // case 3 ->
-                // case 4 ->
+                case 4 -> showTotalExpectedIncome();
                 case 0 -> running = false;
                 default -> System.out.println("Ugyldigt valg.");
             }
@@ -305,4 +305,11 @@ public class UserInterface {
         }
             System.out.println("--------------------------");
         }
+
+    private void showTotalExpectedIncome() {
+        int totalIncome = controller.calculateTotalExpectedIncome();
+
+        System.out.println("\n=== Forventet samlet kontingentindtægt ===");
+        System.out.println("Samlet årlig kontingentindtægt: " + totalIncome + " kr.");
+    }
     }
