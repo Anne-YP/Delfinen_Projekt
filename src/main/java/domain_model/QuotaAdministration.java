@@ -1,5 +1,7 @@
 package domain_model;
 
+import java.util.ArrayList;
+
 public class QuotaAdministration {
 
     public int calculateQuota (Member member) {
@@ -17,5 +19,16 @@ public class QuotaAdministration {
         }
 
         return Quota.SENIOR_MEMBER;
+    }
+
+    public int calculateTotalExpectedIncome(ArrayList<Member> members) {
+
+        int totalIncome = 0;
+
+        for (Member member : members) {
+            totalIncome += calculateQuota(member);
+        }
+
+        return totalIncome;
     }
 }
