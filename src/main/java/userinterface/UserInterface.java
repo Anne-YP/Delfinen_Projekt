@@ -123,7 +123,7 @@ public class UserInterface {
 
             switch (treasurerChoice) {
                 // case 1 ->
-                // case 2 ->
+                case 2 -> registerPayment();
                 // case 3 ->
                 // case 4 ->
                 case 0 -> running = false;
@@ -305,4 +305,25 @@ public class UserInterface {
         }
             System.out.println("--------------------------");
         }
+
+    private void registerPayment() {
+
+        int memberId = readInt("Indtast medlemsnummer: ");
+
+        Member member = controller.findMemberById(memberId);
+
+        if(member == null) {
+            System.out.println("Medlem ikke fundet.");
+            return;
+        }
+
+        boolean paymentRegistered = controller.registerPayment(member);
+
+        if(paymentRegistered) {
+            System.out.println("Betaling registreret.");
+        } else {
+            System.out.println("Betalingen er allerede registreret.");
+        }
+    }
+
     }

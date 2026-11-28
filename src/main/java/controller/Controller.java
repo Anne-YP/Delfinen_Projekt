@@ -38,4 +38,12 @@ public class Controller {
     public ArrayList<Member> getMembers() {
         return memberAdministration.getMembers();
     }
+
+    public Member findMemberById(int memberId) {
+        return memberAdministration.findMemberById(memberId);
+    }
+
+    public boolean registerPayment(Member member) {
+        return memberAdministration.registerPayment(member);
+    }
 }
